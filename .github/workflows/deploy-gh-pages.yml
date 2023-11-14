@@ -1,7 +1,5 @@
 name: Deploy to GitHubPages
 on:
-  push:
-    branches: ["redux-api-2023"]
   pull_request:
     branches: ["redux-api-2023"]
 permissions:
