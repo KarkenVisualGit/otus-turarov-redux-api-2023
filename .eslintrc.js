@@ -10,7 +10,6 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:jest/recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:vue/vue3-essential",
 		"prettier",
 	],
 	overrides: [
@@ -29,7 +28,7 @@ module.exports = {
 		parser: "@typescript-eslint/parser",
 		sourceType: "module",
 	},
-	plugins: ["@typescript-eslint", "vue"],
+	plugins: ["@typescript-eslint"],
 	rules: {
 		"import/extensions": ["warn", "never"],
 		"import/prefer-default-export": "off",

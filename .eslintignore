@@ -7,4 +7,4 @@ jest.config.js
 webpack.config.js
 webpack.config.prod.js
 jest.config.ts
-Readme.md
+README.md
