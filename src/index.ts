@@ -1,18 +1,20 @@
 import { Store, AppState } from './store';
 import { cartReducer, combineReducers } from './reducers';
 import { addToCart, removeFromCart, updateQuantity } from './actions'
+import { confirmationMiddleware, loggerMiddleware } from './middleware'
 import "./style/style.css";
 
 const initialState: AppState = {
   cart: {
-    items: []
+    items: [{ id: '123', name: 'Product 1', quantity: 2 }]
   }
 };
 const rootReducer = combineReducers({ cart: cartReducer });
-const store = new Store(rootReducer, initialState);
+const store = new Store(rootReducer, initialState, [confirmationMiddleware, loggerMiddleware]);
 
 
 function renderCart() {
+  console.log("Rendering cart with state:", store.getState());
   const cartElement = document.getElementById('cart');
   if (!cartElement) return;
   cartElement.innerHTML = '';
