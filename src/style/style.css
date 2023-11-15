@@ -12,6 +12,10 @@ body {
   padding: 20px;
 }
 
+.add-to-cart {
+  font-size: 8px;
+}
+
 .product {
   background-color: #fff;
   border: 1px solid #ddd;

@@ -65,10 +65,11 @@ function attachCartEventListeners() {
       const target = event.target as HTMLInputElement;
       const productId = target.dataset.id;
       const quantity = parseInt(target.value, 10);
-      if (productId) {
+      if (productId && quantity > 0) {
         store.dispatch(updateQuantity(productId, quantity));
       } else {
         console.error("Product ID is undefined");
+        target.value = '1';
       }
     });
   });
