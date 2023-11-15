@@ -14,8 +14,9 @@ export interface CartItem {
 export interface CartState {
   items: CartItem[];
 }
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface Action<T = any> {
   type: T;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   payload?: any;
 }

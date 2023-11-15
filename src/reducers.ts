@@ -1,4 +1,5 @@
-import { CartActionTypes, CartState, Action } from "./types";
+import { CartState, Action } from "./types";
+import * as ActionTypes from "./types";
 
 interface AppState {
   cart: CartState;
@@ -6,6 +7,8 @@ interface AppState {
 type AppStateKeys = keyof AppState;
 
 type Reducer<S, A> = (state: S | undefined, action: A) => S;
+
+const actionType = ActionTypes.CartActionTypes;
 
 interface ReducersMapObject {
   [key: string]: Reducer<CartState, Action>;
@@ -18,7 +21,7 @@ export const cartReducer = (
 	action: Action
 ) => {
 	switch (action.type) {
-	case CartActionTypes.ADD_TO_CART: {
+	case actionType.ADD_TO_CART: {
 		const existingProductIndex = state.items.findIndex(
 			(product) => product.id === action.payload.id
 		);
@@ -38,13 +41,13 @@ export const cartReducer = (
 		};
 	}
 
-	case CartActionTypes.REMOVE_FROM_CART:
+	case actionType.REMOVE_FROM_CART:
 		return {
 			...state,
 			items: state.items.filter((product) => product.id !== action.payload),
 		};
 
-	case CartActionTypes.UPDATE_QUANTITY:
+	case actionType.UPDATE_QUANTITY:
 		return {
 			...state,
 			items: state.items.map((product) =>
@@ -54,7 +57,7 @@ export const cartReducer = (
 			),
 		};
 
-	case CartActionTypes.SELECT_PRODUCT:
+	case actionType.SELECT_PRODUCT:
 		return {
 			...state,
 			items: state.items.map((product) =>
@@ -72,17 +75,15 @@ export const cartReducer = (
 export const combineReducers =
   (reducers: ReducersMapObject) =>
   	(
-  		/* eslint-disable default-param-last */
   		state: AppState | undefined = { cart: { items: [] } },
   		action: Action
   	): AppState =>
   		Object.keys(reducers).reduce((nextState: AppState, key: string) => {
-  			if (key in state) {
-  				const reducerKey = key as AppStateKeys;
-  				const reducer = reducers[reducerKey];
-  				const previousStateForKey = state[reducerKey];
-  				const nextStateForKey = reducer(previousStateForKey, action);
-  				nextState[reducerKey] = nextStateForKey;
-  			}
-  			return nextState;
+  			const reducerKey = key as AppStateKeys;
+
+  			const reducer = reducers[reducerKey];
+  			const previousStateForKey = state[reducerKey];
+  			const nextStateForKey = reducer(previousStateForKey, action);
+
+  			return { ...nextState, [reducerKey]: nextStateForKey };
   		}, {} as AppState);

@@ -31,6 +31,8 @@ module.exports = {
 	plugins: ["@typescript-eslint"],
 	rules: {
 		"import/extensions": ["warn", "never"],
+		"no-shadow": "off",
+		"@typescript-eslint/no-shadow": ["error"],
 		"import/prefer-default-export": "off",
 		"jest/valid-title": "off",
 		"no-console": "off",

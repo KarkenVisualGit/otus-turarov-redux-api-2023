@@ -7,7 +7,10 @@ export interface AppState {
 type State = AppState;
 type Listener = () => void;
 type Middleware = (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line no-use-before-define
   store: Store
+  // eslint-disable-next-line no-use-before-define
 ) => (next: Dispatch) => (action: Action) => void;
 type Dispatch = (action: Action) => void;
 type Reducer = (state: State, action: Action) => State;

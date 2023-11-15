@@ -10,19 +10,13 @@ export const loggerMiddleware =
   };
 
 export const confirmationMiddleware =
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   (store: Store) => (next: (action: Action) => void) => (action: Action) => {
   	if (action.type === "REMOVE_FROM_CART") {
   		const confirmRemoval = window.confirm(
   			"Вы уверены, что хотите удалить этот товар из корзины?"
   		);
-  		if (!confirmRemoval) return;
-  	}
-
-  	if (action.type === "UPDATE_QUANTITY") {
-  		const confirmUpdate = window.confirm(
-  			"Вы уверены, что хотите изменить количество этого товара?"
-  		);
-  		if (!confirmUpdate) return;
+  		if (!confirmRemoval) return undefined;
   	}
 
   	return next(action);
