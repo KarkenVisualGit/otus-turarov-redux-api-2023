@@ -16,7 +16,7 @@ export class Store {
     private reducer: Reducer;
     private middlewares: Middleware[];
 
-    constructor(reducer: Reducer, initialState: State = {} as AppState, middlewares: Middleware[] = []) {
+    constructor(reducer: Reducer, initialState: State = { cart: { items: [] } }, middlewares: Middleware[] = []) {
         this.reducer = reducer;
         this.state = initialState;
         this.middlewares = middlewares;
