@@ -1,6 +1,10 @@
-import { Action } from './types';
+import { Action, CartState } from './types';
 
-type State = any;
+export interface AppState {
+    cart: CartState;
+  }
+
+type State = AppState;
 type Listener = () => void;
 type Middleware = (store: Store) => (next: Dispatch) => (action: Action) => void;
 type Dispatch = (action: Action) => void;
@@ -12,7 +16,7 @@ export class Store {
     private reducer: Reducer;
     private middlewares: Middleware[];
 
-    constructor(reducer: Reducer, initialState: State = {}, middlewares: Middleware[] = []) {
+    constructor(reducer: Reducer, initialState: State = {} as AppState, middlewares: Middleware[] = []) {
         this.reducer = reducer;
         this.state = initialState;
         this.middlewares = middlewares;
