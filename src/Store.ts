@@ -19,11 +19,10 @@ export class Store {
     dispatch(action: Action) {
         this.middlewares.forEach(middleware => {
             middleware(this)(action);
-          });
-      
-          this.state = this.reducer(this.state, action);
-          this.listeners.forEach(listener => listener());
-        }
+        });
+
+        this.state = this.reducer(this.state, action);
+        this.listeners.forEach(listener => listener());
 
         return dispatch(action);
     }
@@ -40,5 +39,5 @@ export class Store {
         let result = next(action);
         console.log('next state', store.getState());
         return result;
-      };
+    };
 }
