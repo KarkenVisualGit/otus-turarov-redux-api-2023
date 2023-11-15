@@ -1,51 +1,59 @@
-import { Action, CartState } from './types';
+import { Action, CartState } from "./types";
 
 export interface AppState {
-    cart: CartState;
-  }
+  cart: CartState;
+}
 
 type State = AppState;
 type Listener = () => void;
-type Middleware = (store: Store) => (next: Dispatch) => (action: Action) => void;
+type Middleware = (
+  store: Store
+) => (next: Dispatch) => (action: Action) => void;
 type Dispatch = (action: Action) => void;
 type Reducer = (state: State, action: Action) => State;
 
 export class Store {
-    private state: State;
-    private listeners: Listener[] = [];
-    private reducer: Reducer;
-    private middlewares: Middleware[];
+	private state: State;
 
-    constructor(reducer: Reducer, initialState: State = { cart: { items: [] } }, middlewares: Middleware[] = []) {
-        this.reducer = reducer;
-        this.state = initialState;
-        this.middlewares = middlewares;
-    }
+	private listeners: Listener[] = [];
 
-    getState(): State {
-        return this.state;
-    }
+	private reducer: Reducer;
 
-    dispatch(action: Action): void {
-        const chain = this.middlewares.map(middleware => middleware(this));
-        let dispatch: Dispatch = this.rawDispatch.bind(this);
-        chain.reverse().forEach(middleware => {
-            dispatch = middleware(dispatch);
-        });
+	private middlewares: Middleware[];
 
+	constructor(
+		reducer: Reducer,
+		initialState: State = { cart: { items: [] } },
+		middlewares: Middleware[] = []
+	) {
+		this.reducer = reducer;
+		this.state = initialState;
+		this.middlewares = middlewares;
+	}
 
-        dispatch(action);
-    }
+	getState(): State {
+		return this.state;
+	}
 
-    private rawDispatch(action: Action): void {
-        this.state = this.reducer(this.state, action);
-        this.listeners.forEach(listener => listener());
-    }
+	dispatch(action: Action): void {
+		const chain = this.middlewares.map((middleware) => middleware(this));
+		let dispatch: Dispatch = this.rawDispatch.bind(this);
+		chain.reverse().forEach((middleware) => {
+			dispatch = middleware(dispatch);
+		});
 
-    subscribe(listener: Listener): () => void {
-        this.listeners.push(listener);
-        return () => {
-            this.listeners = this.listeners.filter(l => l !== listener);
-        };
-    }
+		dispatch(action);
+	}
+
+	private rawDispatch(action: Action): void {
+		this.state = this.reducer(this.state, action);
+		this.listeners.forEach((listener) => listener());
+	}
+
+	subscribe(listener: Listener): () => void {
+		this.listeners.push(listener);
+		return () => {
+			this.listeners = this.listeners.filter((l) => l !== listener);
+		};
+	}
 }
