@@ -31,7 +31,9 @@ const config: Config = {
   // coveragePathIgnorePatterns: [
   //   "\\\\node_modules\\\\"
   // ],
-
+  moduleNameMapper: {
+    "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js",
+  },
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
 

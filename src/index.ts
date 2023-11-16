@@ -15,7 +15,7 @@ const store = new Store(rootReducer, initialState, [
 	loggerMiddleware,
 ]);
 
-function attachCartEventListeners() {
+export function attachCartEventListeners(store: Store) {
 	document.querySelectorAll(".remove-from-cart").forEach((button) => {
 		button.addEventListener("click", (event) => {
 			const target = event.target as HTMLButtonElement;
@@ -50,7 +50,7 @@ function attachCartEventListeners() {
 	});
 }
 
-function renderCart() {
+export function renderCart() {
 	const cartElement = document.getElementById("cart");
 	if (!cartElement) return;
 	cartElement.innerHTML = "";
@@ -66,10 +66,10 @@ function renderCart() {
 		cartElement.appendChild(productElement);
 	});
 
-	attachCartEventListeners();
+	attachCartEventListeners(store);
 }
 
-function attachEventListeners() {
+export function attachEventListeners() {
 	document.querySelectorAll(".add-to-cart").forEach((button) => {
 		button.addEventListener("click", (event) => {
 			const target = event.target as HTMLButtonElement;
