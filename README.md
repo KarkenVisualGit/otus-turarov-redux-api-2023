@@ -1,9 +1,24 @@
+[![codecov](https://codecov.io/gh/KarkenVisualGit/otus-turarov-redux-api-2023/graph/badge.svg?token=edb9HU2sOn)](https://codecov.io/gh/KarkenVisualGit/otus-turarov-redux-api-2023/tree/redux-api-2023)
+
 ## Report
+
+> :exclamation: No coverage uploaded for pull request base (`main@19bf318`). [Click here to learn what that means](https://docs.codecov.io/docs/error-reference?utm_medium=referral&utm_source=github&utm_content=checks&utm_campaign=pr+comments&utm_term=Karken+Turarov#section-missing-base-commit). The diff coverage is `n/a`.
 
 ## Additional details and impacted files
 
 ```diff
-
+@@           Coverage Diff           @@
+##             main       #1   +/-   ##
+=======================================
+  Coverage        ?   93.98%
+=======================================
+  Files           ?        6
+  Lines           ?      316
+  Branches        ?       46
+=======================================
+  Hits            ?      297
+  Misses          ?       16
+  Partials        ?        3
 
 ```
 
