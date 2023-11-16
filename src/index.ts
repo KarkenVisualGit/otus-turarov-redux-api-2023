@@ -50,7 +50,7 @@ export function attachCartEventListeners(store: Store) {
 	});
 }
 
-export function renderCart() {
+export function renderCart(store: Store) {
 	const cartElement = document.getElementById("cart");
 	if (!cartElement) return;
 	cartElement.innerHTML = "";
@@ -69,7 +69,7 @@ export function renderCart() {
 	attachCartEventListeners(store);
 }
 
-export function attachEventListeners() {
+export function attachEventListeners(store: Store) {
 	document.querySelectorAll(".add-to-cart").forEach((button) => {
 		button.addEventListener("click", (event) => {
 			const target = event.target as HTMLButtonElement;
@@ -91,7 +91,9 @@ export function attachEventListeners() {
 	});
 }
 
-store.subscribe(renderCart);
+store.subscribe(() => {
+	renderCart(store);
+  });
 
-attachEventListeners();
-renderCart();
+attachEventListeners(store);
+renderCart(store);
