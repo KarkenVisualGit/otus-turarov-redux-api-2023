@@ -8,7 +8,7 @@ import {
 	renderCart,
 } from "../index";
 
-jest.mock("../store");
+jest.mock("../Store");
 
 describe("DOM Event Listeners", () => {
 	let mockStore: jest.Mocked<Store>;
