@@ -3,7 +3,7 @@ import { cartReducer, combineReducers } from "./reducers";
 import { addToCart, removeFromCart, updateQuantity } from "./actions";
 import { confirmationMiddleware, loggerMiddleware } from "./middleware";
 import "./style/style.css";
-
+/* eslint-disable @typescript-eslint/no-shadow */
 const initialState: AppState = {
 	cart: {
 		items: [{ id: "123", name: "Product 1", quantity: 2 }],
@@ -93,7 +93,7 @@ export function attachEventListeners(store: Store) {
 
 store.subscribe(() => {
 	renderCart(store);
-  });
+});
 
 attachEventListeners(store);
 renderCart(store);

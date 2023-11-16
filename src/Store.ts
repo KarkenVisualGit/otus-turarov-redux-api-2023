@@ -4,16 +4,16 @@ export interface AppState {
   cart: CartState;
 }
 
-type State = AppState;
-type Listener = () => void;
-type Middleware = (
+export type State = AppState;
+export type Listener = () => void;
+export type Middleware = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // eslint-disable-next-line no-use-before-define
   store: Store
   // eslint-disable-next-line no-use-before-define
 ) => (next: Dispatch) => (action: Action) => void;
-type Dispatch = (action: Action) => void;
-type Reducer = (state: State, action: Action) => State;
+export type Dispatch = (action: Action) => void;
+export type Reducer = (state: State, action: Action) => State;
 
 export class Store {
 	private state: State;
@@ -48,7 +48,7 @@ export class Store {
 		dispatch(action);
 	}
 
-	private rawDispatch(action: Action): void {
+	protected rawDispatch(action: Action): void {
 		this.state = this.reducer(this.state, action);
 		this.listeners.forEach((listener) => listener());
 	}

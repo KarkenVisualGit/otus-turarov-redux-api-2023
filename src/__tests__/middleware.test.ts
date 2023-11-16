@@ -30,6 +30,7 @@ describe("loggerMiddleware", () => {
 		};
 		const next = jest.fn();
 		const action: Action = { type: "TEST_ACTION" };
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		const logger = loggerMiddleware(fakeStore as any);
 
 		const consoleSpy = jest.spyOn(console, "log");
