@@ -1,6 +1,6 @@
 import { cartReducer } from "../reducers";
 import { addToCart, removeFromCart, updateQuantity } from "../actions";
-import { Store } from "../store";
+import { Store } from "../Store";
 
 import {
 	attachEventListeners,

@@ -1,6 +1,6 @@
 // confirmationMiddleware.test.ts
 import { confirmationMiddleware, loggerMiddleware } from "../middleware";
-import { Store } from "../store";
+import { Store } from "../Store";
 import { Action } from "../types";
 
 describe("confirmationMiddleware", () => {

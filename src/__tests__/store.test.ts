@@ -1,4 +1,4 @@
-import { Store } from "../store";
+import { Store } from "../Store";
 import { cartReducer, combineReducers } from "../reducers";
 import { addToCart, removeFromCart, updateQuantity } from "../actions";
 
