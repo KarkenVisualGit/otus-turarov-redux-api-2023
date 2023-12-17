@@ -1,4 +1,4 @@
-export enum CartActionTypes {
+export enum ActionTypesCart {
   ADD_TO_CART = "ADD_TO_CART",
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
   SELECT_PRODUCT = "SELECT_PRODUCT",
