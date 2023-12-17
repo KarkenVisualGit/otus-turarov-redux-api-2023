@@ -46,7 +46,7 @@ export function attachCartEventListeners(localStore: Store) {
         return;
       }
 
-      store.dispatch(updateQuantity(productId, newQuantity));
+      localStore.dispatch(updateQuantity(productId, newQuantity));
     });
   });
 }

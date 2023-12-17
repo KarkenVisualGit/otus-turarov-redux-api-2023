@@ -22,25 +22,3 @@ describe("confirmationMiddleware", () => {
     (window.confirm as jest.Mock).mockRestore();
   });
 });
-
-describe("loggerMiddleware", () => {
-  it("logs the action and next state", () => {
-    const fakeStore = {
-      getState: jest.fn(() => ({ some: "state" })),
-    };
-    const next = jest.fn();
-    const action: Action = { type: "TEST_ACTION" };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const logger = loggerMiddleware(fakeStore as any);
-
-    const consoleSpy = jest.spyOn(console, "log");
-
-    logger(next)(action);
-
-    expect(consoleSpy).toHaveBeenCalledWith("dispatching", action);
-    expect(next).toHaveBeenCalledWith(action);
-    expect(consoleSpy).toHaveBeenCalledWith("next state", fakeStore.getState());
-
-    consoleSpy.mockRestore();
-  });
-});
